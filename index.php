@@ -1,9 +1,13 @@
 <?php 
 // Generatore di password
-$pw;
-if (isset($_GET['pw-length']) && !empty($$_GET['pw-length'])) {
+$characters_str = 'aBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789@$#*&{},[]-=.();+\'/';
+$pw = '';
+if (isset($_GET['pw-length']) && !empty($_GET['pw-length'])) {
   $pw_length = $_GET['pw-length'];
-  
+  for ($i = 0; $i < $pw_length; $i++) {
+    $selected_characters_pos = random_int(0, strlen($characters_str) - 1);
+    $pw .= $characters_str[$selected_characters_pos];
+  }
 };
 
 ?>
@@ -23,13 +27,15 @@ if (isset($_GET['pw-length']) && !empty($$_GET['pw-length'])) {
   <div class="container">
     <!-- Form to insert password characteristics -->
     <form action="">
-      <label for="pw-input">Insert your password length</label>
-      <input type="number" name="pw-length" min="0" class="form-control">
+      <div class="col-3">
+        <label for="pw-input">Insert your password length</label>
+        <input type="number" name="pw-length" min="0" class="form-control">
+      </div>
     </form>
     <main>
       <!-- Risultato del generatore di password -->
        <?php if (isset($pw) && !empty($pw)) { ?>
-        <p class="fst-italic mt-3">La password generata è: <span class="pw-generated"><?= $pw; ?></span>.</p>
+        <p class="mt-3">La password generata è: <span class="fst-italic fst-ud text-break"><?= $pw; ?></span>.</p>
        <?php }; ?>
        
     </main>
