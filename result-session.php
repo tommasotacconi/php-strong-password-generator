@@ -15,7 +15,7 @@ $pw = $_SESSION['generator_password'];
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-<main>
+<main class="p-3">
   <!-- Risultato del generatore di password -->
     <?php if (isset($pw) && !empty($pw)) { ?>
     <p class="mt-3">La password generata è: <span class="fst-italic fst-ud text-break"><?= $pw; ?></span>.</p>
