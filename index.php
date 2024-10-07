@@ -1,15 +1,11 @@
-<?php 
-// Generatore di password
-$characters_str = 'aBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789@$#*&{},[]-=.();+\'/';
-$pw = '';
-if (isset($_GET['pw-length']) && !empty($_GET['pw-length'])) {
-  $pw_length = $_GET['pw-length'];
-  for ($i = 0; $i < $pw_length; $i++) {
-    $selected_characters_pos = random_int(0, strlen($characters_str) - 1);
-    $pw .= $characters_str[$selected_characters_pos];
-  }
-};
+<?php
+require_once(__DIR__ . '/functions.php');
 
+// Richiamo del generatore di password
+if (isset($_GET['pw-length']) && !empty($_GET['pw-length'])) {
+  $length = $_GET['pw-length'];
+  $pw = strongRandomPwGenerator($length);
+}
 ?>
 
 <!DOCTYPE html>
