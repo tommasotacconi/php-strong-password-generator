@@ -1,11 +1,21 @@
 <?php
 require_once(__DIR__ . '/functions.php');
 
+// Start a new session to remember data for other pages
+session_start();
+
 // Richiamo del generatore di password
 if (isset($_GET['pw-length']) && !empty($_GET['pw-length'])) {
   $length = $_GET['pw-length'];
   $pw = strongRandomPwGenerator($length);
+  
+  // Store result in $_SESSION
+  $_SESSION['generator_password'] = $pw;
+  // Redirect user to another page
+  header('Location: result-session.php');
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -28,13 +38,6 @@ if (isset($_GET['pw-length']) && !empty($_GET['pw-length'])) {
         <input type="number" name="pw-length" min="0" class="form-control">
       </div>
     </form>
-    <main>
-      <!-- Risultato del generatore di password -->
-       <?php if (isset($pw) && !empty($pw)) { ?>
-        <p class="mt-3">La password generata è: <span class="fst-italic fst-ud text-break"><?= $pw; ?></span>.</p>
-       <?php }; ?>
-       
-    </main>
 
   </div>
 </body>
