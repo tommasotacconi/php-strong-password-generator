@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 $pw = $_SESSION['generator_password'];
 

@@ -15,7 +15,6 @@ if (isset($_GET['pw-length']) && !empty($_GET['pw-length'])) {
   header('Location: result-session.php');
 }
 
-
 ?>
 
 <!DOCTYPE html>
